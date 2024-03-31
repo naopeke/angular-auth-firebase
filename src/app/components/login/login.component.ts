@@ -4,6 +4,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button'
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -47,20 +49,28 @@ export class LoginComponent {
 
   //Angular 14以降のバージョンで導入されたスタンドアロンコンポーネントでは、inject 関数を使ってサービスや他のトークンをインジェクトすることができますが、inject 関数を使用するためには、@angular/core からそれをインポートする必要があります。
   fb = inject(FormBuilder);
-
-  login(){
-    if (!this.loginForm.valid){
-      return;
-    }
-
-    console.log('Validation passed');
-  }
+  authService = inject(AuthService);
+  router = inject(Router);
 
   loginForm = this.fb.group({
     email:['', [Validators.required, Validators.email]],
     password: ['', Validators.required]
   });
+  
+  async login(){
+    const { email, password } = this.loginForm.value;
+
+    if (!this.loginForm.valid || !email || !password){
+      return;
+    }
+
+
+    await this.authService.login(email, password);
+    this.router.navigate(['/home']);
+    console.log('Validation passed');
+  }
 
   email = this.loginForm.get('email');
   password = this.loginForm.get('password');
+
 }

@@ -1,14 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet, MatToolbarModule],
   template: `
-  <mat-toolbar color='primary'>Angular Sign Up App</mat-toolbar>
+  <mat-toolbar color='primary'>Angular Firebase Authentication
+    <span *ngIf="currentUser()">
+      {{ currentUser()?.email }}
+    </span>
+  </mat-toolbar>
+
 
   <div class="container">
     <router-outlet></router-outlet>
@@ -18,8 +24,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     .container {
       padding: 24px;
     }
+
+    mat-toolbar {
+      justify-content: space-between;
+    }
   `],
 })
 export class AppComponent {
-  title = 'auth-firebase';
+
+  authService = inject(AuthService);
+
+  currentUser = this.authService.currentUser;
 }
