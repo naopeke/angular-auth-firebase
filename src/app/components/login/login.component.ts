@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button'
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -51,6 +52,7 @@ export class LoginComponent {
   fb = inject(FormBuilder);
   authService = inject(AuthService);
   router = inject(Router);
+  notificationService = inject(NotificationService);
 
   loginForm = this.fb.group({
     email:['', [Validators.required, Validators.email]],
@@ -64,10 +66,15 @@ export class LoginComponent {
       return;
     }
 
+    //loading
+    this.notificationService.showLoading();
 
     await this.authService.login(email, password);
     this.router.navigate(['/home']);
     console.log('Validation passed');
+
+    //loading
+    this.notificationService.hideLoading();
   }
 
   email = this.loginForm.get('email');
