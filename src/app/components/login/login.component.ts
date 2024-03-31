@@ -70,6 +70,9 @@ export class LoginComponent {
     this.notificationService.showLoading();
 
     await this.authService.login(email, password);
+    //snackbar
+    this.notificationService.success('Logged in successfully');
+ 
     this.router.navigate(['/home']);
     console.log('Validation passed');
 

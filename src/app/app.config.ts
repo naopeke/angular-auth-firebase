@@ -14,6 +14,7 @@ import { getMessaging, provideMessaging } from '@angular/fire/messaging';
 import { getPerformance, providePerformance } from '@angular/fire/performance';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-config';
+import { MatSnackBarModule} from '@angular/material/snack-bar'
 
 const firebaseConfig = {
 
@@ -38,5 +39,6 @@ export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), 
               provideAnimations(), 
               importProvidersFrom(provideFirebaseApp(() => initializeApp({"projectId":"authentification-for-angular","appId":"1:384498405290:web:3634ec5c094e5c3c80e5d3","storageBucket":"authentification-for-angular.appspot.com","apiKey":"AIzaSyC_ccpXpCGjV7ylDJ6pHnTWgMX0rQFuLGo","authDomain":"authentification-for-angular.firebaseapp.com","messagingSenderId":"384498405290","measurementId":"G-BS50VR7RE2"}))), 
-              importProvidersFrom(provideAuth(() => getAuth()))
+              importProvidersFrom(provideAuth(() => getAuth())),
+              MatSnackBarModule
              ]};
