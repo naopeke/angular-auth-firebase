@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, authState, UserCredential, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, authState, UserCredential, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 import { toSignal } from '@angular/core/rxjs-interop'
 
 @Injectable({
@@ -22,5 +22,9 @@ export class AuthService {
   //signInWithEmailAndPassword関数は、指定されたメールアドレスとパスワードでFirebase Authenticationにログインを試みます。この関数はPromise<UserCredential>を返し、Promiseが解決されるとUserCredentialオブジェクトが返されます。このオブジェクトには、ログインしたユーザーの情報が含まれます。
   login(email: string, password: string): Promise<UserCredential>{
     return signInWithEmailAndPassword(this.firebaseAuth, email, password);
+  }
+
+  logout(): Promise<void>{
+    return signOut(this.firebaseAuth);
   }
 }
