@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "authentification-for-angular": {
+      "hosting": {
+        "auth-firebase": [
+          "authentification-for-angular"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "authentification-for-angular"
+  }
+}

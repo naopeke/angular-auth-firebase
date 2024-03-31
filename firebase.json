@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "auth-firebase",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

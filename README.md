@@ -2,6 +2,41 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.10.
 
+```
+ng new --standalone --inline-style --inline-template
+```
+```
+What name would you like to use for the new workspace and initial project? auth-firebase
+```
+```
+ng add @angular/material  
+```
+https://firebase.google.com/?hl=ja
+```
+ng add @angular/fire
+```
+```
+npm install rxfire@6.0.0
+```
+```
+npm install firebase@9.0.0
+```
+
+もう１つの方法  
+https://github.com/angular/angularfire/blob/master/docs/install-and-setup.md
+```
+npm install -g firebase-tools
+```
+```
+firebase login
+```
+```
+firebase --version
+```
+```
+ng add @angular/fire
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
